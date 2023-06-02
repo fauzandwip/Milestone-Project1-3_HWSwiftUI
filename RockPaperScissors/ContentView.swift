@@ -8,14 +8,51 @@
 import SwiftUI
 
 struct ContentView: View {
+    private var userHands = ["rock", "paper", "scissors"]
+    private var computerHands = ["rock_right", "paper_right", "scissors_right"]
+    private var computerHand = Int.random(in: 0..<3)
+    
+    @State private var userChoosed = "rock"
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationStack {
+            HStack(spacing: 100) {
+                // user hand
+                VStack {
+                    Text("User Hand")
+                        .font(.largeTitle.bold())
+                    
+                    HStack {
+                        ForEach(userHands, id:\.self) { hand in
+                            Button {
+                            } label: {
+                                Image(hand)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: 200, maxHeight: 200)
+                            }
+                        }
+                    }
+                }
+                
+                VStack {
+                    Text("Enemy")
+                        .font(.largeTitle.bold())
+                    
+                    // computer hand
+                    Button {
+                        
+                    }label: {
+                        Image(computerHands[computerHand])
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: 200, maxHeight: 200)
+                    }
+                }
+            }
+            .padding()
         }
-        .padding()
+        
     }
 }
 
